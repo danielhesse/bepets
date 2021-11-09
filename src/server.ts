@@ -1,9 +1,14 @@
 import express, { Request, Response } from 'express';
 
+import { router } from './routes';
+
 const server = express();
 
-server.get('/', (_: Request, response: Response) => {
-  return response.send('Olá Mundo!');
+server.use(router);
+
+// Page 404
+router.use((_: Request, response: Response) => {
+  return response.status(404).send('Página não encontrada!');
 });
 
 server.listen('3333', () => {
