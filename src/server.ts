@@ -1,11 +1,17 @@
 import express, { Request, Response } from 'express';
+import mustacheExpress from 'mustache-express';
 import path from 'path';
 
 import { router } from './routes';
 
 const server = express();
 
-// Public Folder
+// Mustache
+server.set('view engine', 'mustache');
+server.set('views', path.join(__dirname, 'views'));
+server.engine('mustache', mustacheExpress());
+
+// Public
 server.use(express.static(path.join(__dirname, '../public')));
 
 server.use(router);

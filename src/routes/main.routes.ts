@@ -3,7 +3,7 @@ import { Request, Response, Router } from 'express';
 const mainRoutes = Router();
 
 mainRoutes.get('/', (_: Request, response: Response) => {
-  return response.send('Hello World!');
+  return response.render('home');
 });
 
 mainRoutes.get('/contato', (_: Request, response: Response) => {
