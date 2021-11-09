@@ -2,8 +2,8 @@ import express, { Request, Response } from 'express';
 
 const server = express();
 
-server.get('/', (request: Request, response: Response) => {
-  return response.send('Olá Mundo!')
+server.get('/', (_: Request, response: Response) => {
+  return response.send('Olá Mundo!');
 });
 
 server.listen('3333', () => {
