@@ -1,4 +1,5 @@
-import express, { Request, Response } from 'express';
+import 'dotenv/config';
+import express from 'express';
 import mustacheExpress from 'mustache-express';
 import path from 'path';
 
@@ -16,11 +17,6 @@ server.use(express.static(path.join(__dirname, '../public')));
 
 server.use(router);
 
-// Page/Route 404
-router.use((_: Request, response: Response) => {
-  return response.status(404).send('Página não encontrada!');
-});
-
-server.listen('3333', () => {
+server.listen(process.env.PORT, () => {
   console.log('🚀 Server running on port 3333!');
 });
