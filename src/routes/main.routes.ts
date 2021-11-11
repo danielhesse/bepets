@@ -1,17 +1,19 @@
-import { Request, Response, Router } from 'express';
+import { Router } from 'express';
+
+import { AboutController } from '../controllers/AboutController';
+import { ContactController } from '../controllers/ContactController';
+import { HomeController } from '../controllers/HomeController';
 
 const mainRoutes = Router();
 
-mainRoutes.get('/', (_: Request, response: Response) => {
-  return response.render('home');
-});
+const homeController = new HomeController();
+const contactController = new ContactController();
+const aboutController = new AboutController();
 
-mainRoutes.get('/contato', (_: Request, response: Response) => {
-  return response.send('Fomulário de Contato.');
-});
+mainRoutes.get('/', homeController.handle);
 
-mainRoutes.get('/sobre', (_: Request, response: Response) => {
-  return response.send('Página Institucional sobre a empresa.');
-});
+mainRoutes.get('/contato', contactController.handle);
+
+mainRoutes.get('/sobre', aboutController.handle);
 
 export { mainRoutes };
